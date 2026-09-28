@@ -29,7 +29,14 @@ Tudo abaixo está **apenas simulado no frontend** (`Origem.dc.html`). Nada persi
 
 ## 6. Sacola / checkout
 - "Adicionar à sacola" só dispara um toast; não existe carrinho, frete, pagamento ou pedido.
-- Precisa: carrinho, cálculo de frete (regra de frete grátis acima de R$ 299 está só no texto), pagamento, 6x sem juros, e-mails transacionais.
+- Precisa: carrinho, pagamento (InfinitePay, InfiniteTag `$evelyn-geovana-0fc`), e-mails transacionais.
+- Regras de negócio já confirmadas com a cliente (ver `PERGUNTAS-CLIENTE.md`):
+  - **Frete**: grátis acima de R$ 299 (mantido). Abaixo disso, calcular automaticamente pelo CEP (Correios / Melhor Envio).
+  - Tem **retirada em mãos** e **entrega local em Londrina, PR**.
+  - Prazo de postagem: **até 5 dias úteis** após o pagamento.
+  - **Parcelamento**: sem a promessa de "sem juros"; até **12x** no geral, mas pedidos de até R$ 300 só parcelam em até **5x**.
+  - **Sem desconto no Pix**.
+  - Checkout Integrado da InfinitePay: confirmar se aparece habilitado em Vendas → Checkout → Configurações antes de integrar.
 
 ## 7. Tabela de medidas
 - Modal existe com grade PP–GG × Busto/Cintura/Quadril/Comprimento, **todas as células com "—"** aguardando os dados reais da loja.

@@ -9,40 +9,40 @@ Preencha as respostas depois de cada `**Resposta:**`.
 ## 🚚 Frete
 
 1. O site hoje diz "frete grátis acima de R$ 299". Quer manter esse valor, mudar ou tirar?
-   **Resposta:**
+   **Resposta:** Mantém.
 
 2. Para compras abaixo do frete grátis, como prefere cobrar?
    - a) **Valor fixo** para todo o Brasil (ex.: R$ 20). Qual valor?
    - b) **Valor por região** (ex.: Sudeste R$ 15, demais regiões R$ 25). Quais valores?
    - c) **Cálculo automático pelo CEP** (Correios / Melhor Envio). É mais preciso, mas demora mais para ficar pronto.
 
-   **Resposta:**
+   **Resposta:** c) Cálculo automático pelo CEP.
 
 3. Vai ter **retirada em mãos** ou entrega local na sua cidade? Se sim, em qual cidade?
-   **Resposta:**
+   **Resposta:** Terá retirada em mãos e entrega local em Londrina, PR.
 
 4. Qual o **prazo para postar** o pedido depois do pagamento? (ex.: até 2 dias úteis)
-   **Resposta:**
+   **Resposta:** Até 5 dias úteis.
 
 ## 💳 Parcelamento
 
 5. O site anuncia "6x sem juros". Quer manter?
    (No "sem juros", a taxa do parcelamento sai do bolso da loja, não da cliente.)
-   **Resposta:**
+   **Resposta:** Não.
 
 6. Qual o **máximo de parcelas**? (a InfinitePay permite até 12x)
-   **Resposta:**
+   **Resposta:** 12x.
 
 7. Tem **valor mínimo por parcela**? (ex.: parcela mínima de R$ 30)
-   **Resposta:**
+   **Resposta:** Sim. Compras até R$ 300,00: parcela em até 5x. Acima de R$ 300,00: em até 12x.
 
 8. Quer dar **desconto no Pix**? (ex.: 5% off pagando no Pix)
-   **Resposta:**
+   **Resposta:** Não.
 
 ## 📋 Outras coisas
 
 9. **InfiniteTag** da cliente (o `$nome` do app). Esse pode ficar aqui: ele já aparece no link de pagamento.
-   **Resposta:**
+   **Resposta:** $evelyn-geovana-0fc
 
 10. A opção **Checkout Integrado** aparece para habilitar no app (Vendas → Checkout → Configurações)?
     **Resposta:**
