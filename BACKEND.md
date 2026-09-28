@@ -27,16 +27,40 @@ Tudo abaixo está **apenas simulado no frontend** (`Origem.dc.html`). Nada persi
 - `state.wish` (array de ids) — perde tudo ao recarregar.
 - Precisa: persistir por usuário logado (e merge do que foi salvo antes do login).
 
-## 6. Sacola / checkout
-- "Adicionar à sacola" só dispara um toast; não existe carrinho, frete, pagamento ou pedido.
-- Precisa: carrinho, pagamento (InfinitePay, InfiniteTag `$evelyn-geovana-0fc`), e-mails transacionais.
-- Regras de negócio já confirmadas com a cliente (ver `PERGUNTAS-CLIENTE.md`):
-  - **Frete**: grátis acima de R$ 299 (mantido). Abaixo disso, calcular automaticamente pelo CEP (Correios / Melhor Envio).
-  - Tem **retirada em mãos** e **entrega local em Londrina, PR**.
-  - Prazo de postagem: **até 5 dias úteis** após o pagamento.
-  - **Parcelamento**: sem a promessa de "sem juros"; até **12x** no geral, mas pedidos de até R$ 300 só parcelam em até **5x**.
-  - **Sem desconto no Pix**.
-  - Checkout Integrado da InfinitePay: confirmar se aparece habilitado em Vendas → Checkout → Configurações antes de integrar.
+## 6. Sacola / checkout — InfinitePay
+
+Já funciona, **sem backend**, direto do navegador. Regras vindas de `PERGUNTAS-CLIENTE.md`.
+
+**Como está ligado**: `POST https://api.checkout.infinitepay.io/links` com
+`{ handle, items[{quantity, price, description}], order_nsu, redirect_url }` e
+redireciona para a `url` que vem na resposta. O endpoint responde
+`access-control-allow-origin: *` e não pede chave, então roda no GitHub Pages.
+Preços vão **em centavos**. A InfiniteTag é `evelyn-geovana-0fc` (sem o `$`).
+
+**O que está implementado**
+- Carrinho real: agrupa por peça + tamanho, quantidade, remover, badge no header.
+- Frete grátis acima de R$ 299; abaixo disso, tabela por região pelo 1º dígito do CEP.
+- Retirada em mãos / entrega local em Londrina, PR (frete zero).
+- A API não tem campo de frete: ele entra como **um item a mais** ("Frete · CEP …").
+- `order_nsu` carrega a forma de entrega (`origem-cep86010000-…` ou `origem-retirada-londrina-…`).
+- Parcelamento exibido conforme o valor: até R$ 300 mostra 5x, acima disso 12x.
+- Sem desconto no Pix (o Pix aparece como forma de pagamento no checkout da InfinitePay).
+
+**Pendências reais**
+- **Frete é estimado**, não calculado: a tabela por região em `SHIP_BY_REGION` é
+  provisória. O cálculo que a cliente pediu (Correios / Melhor Envio) exige chave
+  secreta, ou seja, um backend. Enquanto isso, conferir se os valores fecham com o
+  que ela paga na postagem.
+- **Limite de 5x até R$ 300 é só visual.** O payload não tem campo de parcelas —
+  quem manda é a configuração da conta dela no app InfinitePay.
+- **Sem `webhook_url`.** A confirmação de pagamento hoje só chega pelo app da
+  InfinitePay. Para o site saber que o pedido foi pago, precisa de backend.
+- **Preços saem do frontend.** Sem backend não dá para validar o valor antes de
+  cobrar; alguém poderia adulterar o payload. Ela vê o valor no app antes de
+  postar, o que segura o risco nesse porte, mas some quando houver backend.
+- Sacola **não persiste** (recarregar a página esvazia) e **não confere estoque**.
+- `redirect_url` volta para a home — falta uma página de "pedido confirmado" que
+  leia `receipt_url` / `order_nsu` / `capture_method` da query string.
 
 ## 7. Tabela de medidas
 - Modal existe com grade PP–GG × Busto/Cintura/Quadril/Comprimento, **todas as células com "—"** aguardando os dados reais da loja.

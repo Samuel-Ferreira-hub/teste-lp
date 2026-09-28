@@ -45,7 +45,8 @@ Preencha as respostas depois de cada `**Resposta:**`.
    **Resposta:** $evelyn-geovana-0fc
 
 10. A opção **Checkout Integrado** aparece para habilitar no app (Vendas → Checkout → Configurações)?
-    **Resposta:**
+    **Resposta:** Já está ativa — confirmado na prática: a API gerou o link de
+    pagamento com essa InfiniteTag e o checkout abriu normalmente.
 
 11. A lei exige mostrar **CPF ou CNPJ** no rodapé da loja. Tudo bem aparecer o CPF, ou vai abrir um MEI antes?
     **Resposta (só a decisão — o número NÃO vai aqui):**
